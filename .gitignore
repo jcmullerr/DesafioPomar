@@ -1,0 +1,26 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+obj
+bin
+.vscode
+
+# Node dependencies
+ClientApp/node_modules
+ClientApp/package-lock.json
+
+# testing
+ClientApp/coverage
+
+# production
+ClientApp/build
+
+# misc
+ClientApp/.DS_Store
+ClientApp/.env.local
+ClientApp/.env.development.local
+ClientApp/.env.test.local
+ClientApp/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
