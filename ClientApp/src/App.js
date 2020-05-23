@@ -26,7 +26,7 @@ export default class App extends Component {
           <Route path='/gruposCadastro' component={GruposCadastroComponent}/>
           <Route path='/gruposEdicao/:id' component={GruposCadastroComponent}/>
           <Route path='/especies' component={EspeciesListComponent}/>
-          <Route path='/especiessCadastro' component={EspeciesCadastroComponent}/>
+          <Route path='/especiesCadastro' component={EspeciesCadastroComponent}/>
           <Route path='/especiesEdicao/:id' component={EspeciesCadastroComponent}/>
         </Switch>
       </Layout>

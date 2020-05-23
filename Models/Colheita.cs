@@ -15,5 +15,10 @@ namespace DesafioPomar.Models
         [ForeignKey(nameof(Arvore))]
         public long ArvoreId {get;set;}
         public virtual Arvore Arvore {get;set;}
+
+        [ForeignKey(nameof(Grupo))]
+        public long GrupoId {get;set;}
+        public virtual Grupo Grupo {get;set;}
+
     }
 }

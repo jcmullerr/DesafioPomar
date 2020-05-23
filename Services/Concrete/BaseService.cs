@@ -23,17 +23,10 @@ namespace DesafioPomar.Services.Concrete
         {
             try
             {
-                var data = await _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
-                if (data == null)
-                {
-                    return false;
-                }
-                else
-                {
+                var data = await _dbSet.Where(x => x.Id == id).FirstOrDefaultAsync();
                     _dbSet.Remove(data);
 
                     await _DbContext.SaveChanges();
-                }
             }
             catch (Exception ex)
             {
@@ -48,9 +41,12 @@ namespace DesafioPomar.Services.Concrete
             return await GetQuery().Where(predicate).ToListAsync();
         }
 
-        public async Task<T> GetSingle(Expression<Func<T, bool>> predicate)
+        public async Task<T> GetSingle(Expression<Func<T, bool>> predicate,bool noTrcking = false)
         {
-            return await GetQuery().Where(predicate).FirstOrDefaultAsync();
+            if(noTrcking)
+                return await _dbSet.AsNoTracking().Where(predicate).FirstOrDefaultAsync();
+            else
+                return await GetQuery().Where(predicate).FirstOrDefaultAsync();
         }
 
         public async Task<bool> Insert(T model)

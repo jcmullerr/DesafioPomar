@@ -6,39 +6,31 @@ export class EspeciesCadastroComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      nome : '',
+      id : null,
       descricao : ''
     };
   }
 
   handleDescricaoChange = (e) => {
-    this.setState({descricao : e.targets.value})
-  }
-  handleIdadeChange = (e) => {
-    this.setState({idade : e.targets.value})
+    this.setState({descricao : e.target.value})
   }
 
   componentDidMount() {
-      debugger;
     let id = this.props.match.params.id;
     if (id != undefined)
-        this.buscarGrupo(id);
+        this.buscarEspecie(id);
   }
 
-  static renderGrupoCRUD() {
+  static renderEspecieCRUD(me) {
     return (
       <div>
           <form>
               <div className='row'>
-                <label>Nome</label>
-                <input type='text' className='form-control'></input>
-              </div>
-              <div className='row'>
                 <label>Descricao</label>
-                <input type='text' className='form-control'></input>
+                <input type='text' className='form-control' onChange={me.handleDescricaoChange} value={me.state.descricao}/>
               </div>
               <div className='row'>
-                <Button className='btn btn-primary col-2' style={{marginTop : 10}} onClick={() => alert(this.descricaoRef.current)}>Salvar</Button>
+                <Button className='btn btn-primary col-2' style={{marginTop : 10}} onClick={me.Salvar}>Salvar</Button>
               </div>
           </form>
       </div>
@@ -48,7 +40,7 @@ export class EspeciesCadastroComponent extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EspeciesCadastroComponent.renderGrupoCRUD(this.state.grupo);
+      : EspeciesCadastroComponent.renderEspecieCRUD(this);
 
     return (
       <div>
@@ -58,12 +50,55 @@ export class EspeciesCadastroComponent extends Component {
     );
   }
 
-  async buscarGrupo(id) {
-    const response = await fetch(`api/grupo/${Number(id)}`);
+  async buscarEspecie(id) {
+    debugger;
+    const response = await fetch(`api/Especies/${Number(id)}`);
     const data = await response.json();
     this.setState({
-      nome : data.nome,
-      descricao : data.descricao
+      descricao : data.descricao,
+      id : data.id
     })
+  }
+
+  Salvar = async () => {
+    if(this.state.id != null)
+      await this.Update();
+    else
+      await this.Insert();  
+    
+    this.props.history.push('/especies')
+  }
+
+  Insert = async () => {
+    debugger;
+    let Especie = this.montarEspecie();
+    console.log(JSON.stringify(Especie))
+    const response = await fetch(`api/Especies`,{
+      method : 'POST',
+      body : JSON.stringify(Especie),
+      headers:{
+        "Content-Type":"application/json"
+      } 
+    });
+    const data = await response.json();
+  }
+
+  Update = async () => {
+    let Especie = this.montarEspecie();
+    const response = await fetch(`api/Especies`,{
+      method : 'PUT',
+      body : JSON.stringify(Especie),
+      headers:{
+        "Content-Type":"application/json"
+      } 
+    });
+  }
+
+  montarEspecie = () => {
+    let id = this.state.id == null ? this.state.id : Number(this.state.id);
+    return {
+      id : id,
+      descricao : this.state.descricao,
+    }
   }
 }

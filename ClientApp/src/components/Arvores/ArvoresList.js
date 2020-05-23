@@ -73,14 +73,14 @@ export class ArvoresListComponent extends Component {
     );
   }
 
-  Excluir = async () => {
-    debugger;
-    await this.ExcluirArvore(this.state.Arvores[this.state.indice]);
-  }
   async carregarArvores() {
     const response = await fetch('api/arvores');
     const data = await response.json();
     this.setState({ Arvores: data, loading: false });
+  }
+
+  Excluir = async () => {
+    await this.ExcluirArvore(this.state.Arvores[this.state.indice]);
   }
 
   async ExcluirArvore(model){

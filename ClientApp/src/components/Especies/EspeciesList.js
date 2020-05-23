@@ -44,7 +44,7 @@ export class EspeciesListComponent extends Component {
                 <Link to={'/EspeciesEdicao/'+x.id}>
                   <button className='btn btn-primary' style={{marginRight : 10}}>Editar</button>
                 </Link>
-                <button className='btn btn-primary' value='Excluir'  onClick={() => me.setState({excluir : true, itemId : i})}>Excluir</button>
+                <button className='btn btn-primary' value='Excluir'  onClick={() => me.setState({excluir : true, indice : i})}>Excluir</button>
                 </td>
               </tr>
             )}
@@ -72,5 +72,23 @@ export class EspeciesListComponent extends Component {
     const response = await fetch('api/Especies');
     const data = await response.json();
     this.setState({ especies: data, loading: false });
+  }
+
+  Excluir = async () => {
+    await this.ExcluirEspecie(this.state.especies[this.state.indice]);
+  }
+
+  async ExcluirEspecie(model){
+    debugger;
+    console.log(JSON.stringify(model))
+    const response = await fetch('api/Especies',{
+      method : 'DELETE',
+      body : JSON.stringify(model),
+      headers:{
+        "Content-Type":"application/json"
+      }
+    });
+    this.carregarEspecies();
+    this.setState({indice : -1,excluir : false})
   }
 }

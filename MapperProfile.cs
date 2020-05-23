@@ -10,8 +10,10 @@ namespace DesafioPomar
         {
             CreateMap<Arvore,ArvoreViewModel>()
                 .ForMember(dest => dest.Especie,opt => opt.MapFrom(d => d.Especie.Descricao))
-                .ForMember(dest => dest.Grupo,opt => opt.MapFrom(d => d.Grupo.Descricao))
-                .ReverseMap();
+                .ForMember(dest => dest.Grupo,opt => opt.MapFrom(d => d.Grupo.Descricao));
+            CreateMap<ArvoreViewModel,Arvore>()
+                .ForMember(dest => dest.Especie,opt => opt.Ignore())
+                .ForMember(dest => dest.Grupo,opt => opt.Ignore());
             CreateMap<Especie,EspecieViewModel>()
                 .ForMember(dest => dest.Descricao,opt => opt.MapFrom(d => d.Descricao))
                 .ReverseMap();

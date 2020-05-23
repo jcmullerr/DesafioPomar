@@ -11,7 +11,7 @@ namespace DesafioPomar.Services.Interface
         Task<bool> Delete(long id);        
         Task<bool> Insert(T model);
         Task<bool> Update(T model);
-        Task<T> GetSingle(Expression<Func<T, bool>> predicate);
+        Task<T> GetSingle(Expression<Func<T, bool>> predicate, bool noTrcking = false);
         Task<List<T>> GetMany(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetQuery();
     }

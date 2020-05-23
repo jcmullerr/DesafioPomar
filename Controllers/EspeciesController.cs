@@ -49,7 +49,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var especie = await _EspecieService.GetSingle(x => x.Id == model.Id);
+                var especie = await _EspecieService.GetSingle(x => x.Id == model.Id,true);
                 if(especie == null)
                     return NotFound();
 

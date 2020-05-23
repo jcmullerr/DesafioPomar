@@ -9,5 +9,8 @@ namespace DesafioPomar.ViewModels
         public int ? Idade {get;set;}
         public string ? Especie{get;set;}
         public string ? Grupo{get;set;}
+        public long ? GrupoId { get; set; }
+        public long ? EspecieId { get; set; }
+         
     }
 }

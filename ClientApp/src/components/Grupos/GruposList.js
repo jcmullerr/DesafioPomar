@@ -59,7 +59,7 @@ export class GruposListComponent extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : GruposListComponent.renderGruposTable(this.state.Grupos,this);
+      : GruposListComponent.renderGruposTable(this.state.grupos,this);
 
     return (
       <div>
@@ -73,6 +73,24 @@ export class GruposListComponent extends Component {
     debugger;
     const response = await fetch('api/grupos');
     const data = await response.json();
-    this.setState({ Grupos: data, loading: false });
+    this.setState({ grupos: data, loading: false });
+  }
+
+  Excluir = async () => {
+    debugger;
+    await this.ExcluirGrupo(this.state.grupos[this.state.indice]);
+  }
+
+  async ExcluirGrupo(model){
+    console.log(JSON.stringify(model))
+    const response = await fetch('api/grupos',{
+      method : 'DELETE',
+      body : JSON.stringify(model),
+      headers:{
+        "Content-Type":"application/json"
+      }
+    });
+    this.carregarGrupos();
+    this.setState({indice : -1,excluir : false})
   }
 }

@@ -51,7 +51,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var arvore = await _ArvoreService.GetSingle(x => x.Id == model.Id);
+                var arvore = _ArvoreService.GetSingle(x => x.Id == model.Id,true);
                 if(arvore == null)
                     return NotFound();
 
@@ -66,7 +66,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var arvore = await _ArvoreService.GetSingle(x => x.Id == model.Id);
+                var arvore = await _ArvoreService.GetSingle(x => x.Id == model.Id,true);
                 if(arvore == null)
                     return NotFound();
 
