@@ -49,7 +49,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var Colheita = await _ColheitaService.GetSingle(x => x.Id == model.Id);
+                var Colheita = await _ColheitaService.GetSingle(x => x.Id == model.Id,true);
                 if(Colheita == null)
                     return NotFound();
 
@@ -64,7 +64,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var Colheita = await _ColheitaService.GetSingle(x => x.Id == model.Id);
+                var Colheita = await _ColheitaService.GetSingle(x => x.Id == model.Id,true);
                 if(Colheita == null)
                     return NotFound();
 

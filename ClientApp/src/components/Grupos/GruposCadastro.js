@@ -20,7 +20,7 @@ export class GruposCadastroComponent extends Component {
   }
 
   componentDidMount() {
-      debugger;
+      
     let id = this.props.match.params.id;
     if (id != undefined)
         this.buscarGrupo(id);
@@ -63,12 +63,14 @@ export class GruposCadastroComponent extends Component {
     const response = await fetch(`api/grupos/${Number(id)}`);
     const data = await response.json();
     this.setState({
+      id : data.id,
       nome : data.nome,
       descricao : data.descricao
     })
   }
 
   Salvar = async () => {
+    debugger;
     if(this.state.id != null)
       await this.Update();
     else
@@ -78,7 +80,7 @@ export class GruposCadastroComponent extends Component {
   }
 
   Insert = async () => {
-    debugger;
+    
     let Grupo = this.montarGrupo();
     console.log(JSON.stringify(Grupo))
     const response = await fetch(`api/grupos`,{

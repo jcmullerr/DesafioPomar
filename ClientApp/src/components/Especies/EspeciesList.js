@@ -68,7 +68,7 @@ export class EspeciesListComponent extends Component {
   }
 
   async carregarEspecies() {
-    debugger;
+    
     const response = await fetch('api/Especies');
     const data = await response.json();
     this.setState({ especies: data, loading: false });
@@ -79,7 +79,7 @@ export class EspeciesListComponent extends Component {
   }
 
   async ExcluirEspecie(model){
-    debugger;
+    
     console.log(JSON.stringify(model))
     const response = await fetch('api/Especies',{
       method : 'DELETE',

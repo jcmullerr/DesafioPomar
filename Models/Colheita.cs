@@ -13,11 +13,11 @@ namespace DesafioPomar.Models
         [Required]
         public decimal PesoBruto {get;set;}
         [ForeignKey(nameof(Arvore))]
-        public long ArvoreId {get;set;}
+        public long ? ArvoreId {get;set;}
         public virtual Arvore Arvore {get;set;}
 
         [ForeignKey(nameof(Grupo))]
-        public long GrupoId {get;set;}
+        public long ? GrupoId {get;set;}
         public virtual Grupo Grupo {get;set;}
 
     }

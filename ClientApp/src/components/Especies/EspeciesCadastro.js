@@ -51,7 +51,7 @@ export class EspeciesCadastroComponent extends Component {
   }
 
   async buscarEspecie(id) {
-    debugger;
+    
     const response = await fetch(`api/Especies/${Number(id)}`);
     const data = await response.json();
     this.setState({
@@ -70,7 +70,7 @@ export class EspeciesCadastroComponent extends Component {
   }
 
   Insert = async () => {
-    debugger;
+    
     let Especie = this.montarEspecie();
     console.log(JSON.stringify(Especie))
     const response = await fetch(`api/Especies`,{

@@ -129,7 +129,7 @@ export class ArvoresCadastroComponent extends Component {
   }
 
   Insert = async () => {
-    debugger;
+    
     let arvore = this.montarArvore();
     console.log(JSON.stringify(arvore))
     const response = await fetch(`api/arvores`,{

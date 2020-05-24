@@ -10,5 +10,10 @@ namespace DesafioPomar.ViewModels
         public string ? Informacoes { get; set; }
         public DateTime ? DataColheita { get; set; }
         public decimal ? PesoBruto {get;set;}
+        public string ? Arvore {get;set;}
+
+        public long ? ArvoreId {get;set;}
+
+        public long ? GrupoId {get;set;}
     }
 }

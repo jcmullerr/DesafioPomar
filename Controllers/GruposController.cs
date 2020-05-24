@@ -49,7 +49,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var Grupo = await _GrupoService.GetSingle(x => x.Id == model.Id);
+                var Grupo = await _GrupoService.GetSingle(x => x.Id == model.Id,true);
                 if(Grupo == null)
                     return NotFound();
 
@@ -64,7 +64,7 @@ namespace DesafioPomar.Controllers
         {
             try
             {
-                var Grupo = await _GrupoService.GetSingle(x => x.Id == model.Id);
+                var Grupo = await _GrupoService.GetSingle(x => x.Id == model.Id,true);
                 if(Grupo == null)
                     return NotFound();
 

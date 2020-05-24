@@ -19,6 +19,9 @@ namespace DesafioPomar
                 .ReverseMap();
             CreateMap<GrupoViewModel,Grupo>()
                 .ReverseMap();
+            CreateMap<Colheita,ColheitaViewModel>()
+                .ForMember(dest => dest.Arvore , opt => opt.MapFrom(d => d.ArvoreId == null ? d.Grupo.Nome : d.Arvore.Descricao));
+            CreateMap<ColheitaViewModel,Colheita>();
         }
     }
 }

@@ -4,14 +4,16 @@ using DesafioPomar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DesafioPomar.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200523220559_AdicionandoGrupoEmColheita")]
+    partial class AdicionandoGrupoEmColheita
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,13 +57,13 @@ namespace DesafioPomar.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("ArvoreId")
+                    b.Property<long>("ArvoreId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DataColheita")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("GrupoId")
+                    b.Property<long>("GrupoId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Informacoes")
@@ -118,13 +120,13 @@ namespace DesafioPomar.Migrations
                     b.HasOne("DesafioPomar.Models.Especie", "Especie")
                         .WithMany()
                         .HasForeignKey("EspecieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("DesafioPomar.Models.Grupo", "Grupo")
                         .WithMany("Arvores")
                         .HasForeignKey("GrupoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -132,11 +134,15 @@ namespace DesafioPomar.Migrations
                 {
                     b.HasOne("DesafioPomar.Models.Arvore", "Arvore")
                         .WithMany()
-                        .HasForeignKey("ArvoreId");
+                        .HasForeignKey("ArvoreId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("DesafioPomar.Models.Grupo", "Grupo")
                         .WithMany()
-                        .HasForeignKey("GrupoId");
+                        .HasForeignKey("GrupoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

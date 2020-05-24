@@ -70,14 +70,14 @@ export class GruposListComponent extends Component {
   }
 
   async carregarGrupos() {
-    debugger;
+    
     const response = await fetch('api/grupos');
     const data = await response.json();
     this.setState({ grupos: data, loading: false });
   }
 
   Excluir = async () => {
-    debugger;
+    
     await this.ExcluirGrupo(this.state.grupos[this.state.indice]);
   }
 
