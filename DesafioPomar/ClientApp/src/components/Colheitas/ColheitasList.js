@@ -19,7 +19,7 @@ export class ColheitasListComponent extends Component {
       dataFim : new Date(Date.now()).toISOString().substr(0,10),
       grupoId : 0,
       arvoreId : 0,
-      especieId : 0,
+      especieId : 0
     };
   }
 
@@ -150,7 +150,7 @@ export class ColheitasListComponent extends Component {
   }
 
   filtrar = () => {
-    debugger
+    
     var local = this.state;
     let filtrado = this.state.colheitas.filter(x => 
       (local.arvoreId == 0 ? true : x.arvoreId == local.arvoreId) &&
@@ -170,6 +170,7 @@ export class ColheitasListComponent extends Component {
 
     const response = await fetch('api/Colheitas');
     const data = await response.json();
+    
     this.setState({ colheitas: data, colheitasFiltradas : data, loading: false });
   }
 

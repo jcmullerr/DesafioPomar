@@ -20,7 +20,7 @@ export class ColheitasCadastroComponent extends Component {
   }
 
   async componentDidMount() {
-    debugger;
+    
     let id = this.props.match.params.id;
     await this.carregarArvores();
     await this.carregarGrupos();
@@ -174,7 +174,7 @@ export class ColheitasCadastroComponent extends Component {
   }
 
   montarColheita = () => {
-    debugger;
+    
     let id = this.state.id == null ? this.state.id : Number(this.state.id);
     return {
       id : id,

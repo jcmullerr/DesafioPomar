@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
 import {ArvoresListComponent } from './components/Arvores/ArvoresList'
 import {ArvoresCadastroComponent } from './components/Arvores/ArvoresCadastro'
 import {GruposListComponent} from './components/Grupos/GruposList'
@@ -20,7 +19,6 @@ export default class App extends Component {
     return (
       <Layout>
         <Switch>
-          <Route path='/home' component={Home} />
           <Route exact path='/' component={ColheitasListComponent} />
           <Route path='/ColheitasCadastro' component={ColheitasCadastroComponent} />
           <Route path='/ColheitasEdicao/:id' component={ColheitasCadastroComponent} />

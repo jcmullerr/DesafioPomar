@@ -15,5 +15,6 @@ namespace DesafioPomar.ViewModels
         public long ? ArvoreId {get;set;}
 
         public long ? GrupoId {get;set;}
+        public long ? EspecieId {get;set;}
     }
 }

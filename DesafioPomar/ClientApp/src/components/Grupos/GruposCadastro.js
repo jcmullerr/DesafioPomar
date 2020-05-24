@@ -70,7 +70,7 @@ export class GruposCadastroComponent extends Component {
   }
 
   Salvar = async () => {
-    debugger;
+    
     if(this.state.id != null)
       await this.Update();
     else
