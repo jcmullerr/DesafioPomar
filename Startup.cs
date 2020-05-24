@@ -43,7 +43,7 @@ namespace DesafioPomar
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDataContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -78,6 +78,8 @@ namespace DesafioPomar
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            
+            ((DbContext)dbContext).Database.Migrate();
         }
     }
 }
