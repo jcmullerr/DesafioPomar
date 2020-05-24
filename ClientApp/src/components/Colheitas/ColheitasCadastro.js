@@ -131,10 +131,12 @@ export class ColheitasCadastroComponent extends Component {
   }
 
   handleTipoChange = (e) => {
+    let arvoreId = e.target.value == "A" ? this.state.arvores[0].id : null
+    let grupoId = e.target.value == "G" ? this.state.grupos[0].id : null
     this.setState({
         isArvore : e.target.value == "A", 
-        arvoreId : null,
-        grupoId : null
+        arvoreId : arvoreId,
+        grupoId : grupoId
     })
   }
 

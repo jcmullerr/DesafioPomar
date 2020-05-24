@@ -122,38 +122,31 @@ export class ColheitasListComponent extends Component {
   handleArvoreChange = (e) => {
     this.setState({
       arvoreId : e.target.value
-    });
-    this.filtrar();
+    },() => this.filtrar() );
   }
 
   handleGrupoChange = (e) => {
     this.setState({
       grupoId : e.target.value
-    });
-    this.filtrar();
+    },() => this.filtrar() );
   }
 
   handleEspecieChange = (e) => {
     this.setState({
       especieId : e.target.value
-    });
-    this.filtrar();
+    },() => this.filtrar() );
   }
 
   handleDataInicioChange = (e) => {
-    debugger;
     this.setState({
       dataInicio : e.target.value
-    });
-    this.filtrar();
+    },() => this.filtrar() );
   }
 
   handleDataFimChange = (e) => {
-    debugger;
     this.setState({
       dataFim : e.target.value
-    });
-    this.filtrar();
+    },() => this.filtrar() );
   }
 
   filtrar = () => {
@@ -163,7 +156,9 @@ export class ColheitasListComponent extends Component {
       (local.arvoreId == 0 ? true : x.arvoreId == local.arvoreId) &&
       (local.grupoId == 0 ? true : x.grupoId == local.grupoId) &&
       (local.especieId == 0 ? true : x.especieId == local.especieId)&&
-      (new Date(x.dataColheita) >= new Date(local.dataInicio) &&  new Date(x.dataColheita) <= new Date(local.dataFim)));
+      (new Date(x.dataColheita) >= new Date(local.dataInicio)) &&
+      ( new Date(x.dataColheita) <= new Date(local.dataFim))
+      );
     
     this.setState({colheitasFiltradas : filtrado});
   }
